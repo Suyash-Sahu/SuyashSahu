@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "eslint-config-react-app": "^7.0.1",
-    "source-map-explorer": "^2.5.3"
+    "source-map-explorer": "^2.5.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
     "start": "react-scripts start",
