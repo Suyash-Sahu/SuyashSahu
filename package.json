@@ -28,8 +28,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "npm install --legacy-peer-deps",
+    "prepare": "echo 'Preparing for deployment'",
+    "build:ci": "CI=true npm run build"
   },
+  "homepage": ".",
   "eslintConfig": {
     "extends": [
       "react-app",
