@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M95 50C95 74.8528 74.8528 95 50 95C25.1472 95 5 74.8528 5 50C5 25.1472 25.1472 5 50 5C74.8528 5 95 25.1472 95 50Z" stroke="white" stroke-width="4"/>
+    <path d="M34.6875 35.625C34.6875 33.4763 36.4263 31.7375 38.575 31.7375H61.425C63.5737 31.7375 65.3125 33.4763 65.3125 35.625V64.375C65.3125 66.5237 63.5737 68.2625 61.425 68.2625H38.575C36.4263 68.2625 34.6875 66.5237 34.6875 64.375V35.625Z" stroke="white" stroke-width="4"/>
+    <path d="M50 40V60M40 50H60" stroke="white" stroke-width="4"/>
+</svg>

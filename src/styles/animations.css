@@ -1,0 +1,78 @@
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Timeline animations */
+.vertical-timeline-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.vertical-timeline-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vertical-timeline-element-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.vertical-timeline-element-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(145, 94, 255, 0.1) 0%,
+    rgba(145, 94, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vertical-timeline-element-content:hover::after {
+  opacity: 1;
+}
+
+/* Hover effects */
+.vertical-timeline-element-content:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.vertical-timeline-element-icon {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.vertical-timeline-element:hover .vertical-timeline-element-icon {
+  transform: scale(1.1);
+}
