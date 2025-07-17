@@ -21,9 +21,9 @@
     "three": "^0.172.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint-config-react-app": "^7.0.1",
-    "source-map-explorer": "^2.5.3",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "source-map-explorer": "^2.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,6 +53,6 @@
     ]
   },
   "engines": {
-    "node": ">=18.0.0 <21.0.0"
+    "node": ">=18.0.0 <23.0.0"
   }
 }
