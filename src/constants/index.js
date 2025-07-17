@@ -9,7 +9,6 @@ import {
   tailwind,
   php,
   java,
-  kotlin,
   firebase,
   git,
 } from "../assets";

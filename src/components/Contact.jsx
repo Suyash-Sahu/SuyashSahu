@@ -9,212 +9,213 @@ import emailjs from '@emailjs/browser';
 emailjs.init("PovnmbjAcGAvThKGi"); 
 
 // Enhanced 3D Holographic Ring Component
-const HolographicRing = ({ mousePosition }) => {
-  const ringRef = useRef();
-  const particlesRef = useRef();
-  const innerRingRef = useRef();
-  const textRef = useRef();
+// Remove or comment out the unused HolographicRing and ContactInfoCard
+// const HolographicRing = ({ mousePosition }) => {
+//   const ringRef = useRef();
+//   const particlesRef = useRef();
+//   const innerRingRef = useRef();
+//   const textRef = useRef();
   
-  // Create dynamic particle system
-  const particleCount = 200;
-  const particles = useMemo(() => {
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
+//   // Create dynamic particle system
+//   const particleCount = 200;
+//   const particles = useMemo(() => {
+//     const positions = new Float32Array(particleCount * 3);
+//     const colors = new Float32Array(particleCount * 3);
     
-    for (let i = 0; i < particleCount; i++) {
-      // Create spiral pattern
-      const radius = 2 + Math.random() * 3;
-      const angle = (i / particleCount) * Math.PI * 4;
-      const height = (Math.random() - 0.5) * 4;
+//     for (let i = 0; i < particleCount; i++) {
+//       // Create spiral pattern
+//       const radius = 2 + Math.random() * 3;
+//       const angle = (i / particleCount) * Math.PI * 4;
+//       const height = (Math.random() - 0.5) * 4;
       
-      positions[i * 3] = Math.cos(angle) * radius;
-      positions[i * 3 + 1] = height;
-      positions[i * 3 + 2] = Math.sin(angle) * radius;
+//       positions[i * 3] = Math.cos(angle) * radius;
+//       positions[i * 3 + 1] = height;
+//       positions[i * 3 + 2] = Math.sin(angle) * radius;
       
-      // Purple to white gradient colors
-      const intensity = Math.random();
-      colors[i * 3] = 0.57 + intensity * 0.43; // R
-      colors[i * 3 + 1] = 0.37 + intensity * 0.63; // G  
-      colors[i * 3 + 2] = 1; // B
-    }
-    return { positions, colors };
-  }, []);
+//       // Purple to white gradient colors
+//       const intensity = Math.random();
+//       colors[i * 3] = 0.57 + intensity * 0.43; // R
+//       colors[i * 3 + 1] = 0.37 + intensity * 0.63; // G  
+//       colors[i * 3 + 2] = 1; // B
+//     }
+//     return { positions, colors };
+//   }, []);
 
-  useFrame((state) => {
-    const time = state.clock.elapsedTime;
+//   useFrame((state) => {
+//     const time = state.clock.elapsedTime;
     
-    // Main ring animation
-    if (ringRef.current) {
-      ringRef.current.rotation.x = Math.sin(time * 0.2) * 0.3;
-      ringRef.current.rotation.y += 0.008;
-      ringRef.current.rotation.z = Math.cos(time * 0.15) * 0.2;
+//     // Main ring animation
+//     if (ringRef.current) {
+//       ringRef.current.rotation.x = Math.sin(time * 0.2) * 0.3;
+//       ringRef.current.rotation.y += 0.008;
+//       ringRef.current.rotation.z = Math.cos(time * 0.15) * 0.2;
       
-      // Mouse interaction
-      if (mousePosition) {
-        const rotationX = (mousePosition.y - 0.5) * 0.5;
-        const rotationZ = (mousePosition.x - 0.5) * 0.5;
-        ringRef.current.rotation.x += rotationX * 0.03;
-        ringRef.current.rotation.z += rotationZ * 0.03;
-      }
-    }
+//       // Mouse interaction
+//       if (mousePosition) {
+//         const rotationX = (mousePosition.y - 0.5) * 0.5;
+//         const rotationZ = (mousePosition.x - 0.5) * 0.5;
+//         ringRef.current.rotation.x += rotationX * 0.03;
+//         ringRef.current.rotation.z += rotationZ * 0.03;
+//       }
+//     }
     
-    // Inner ring counter-rotation
-    if (innerRingRef.current) {
-      innerRingRef.current.rotation.y -= 0.012;
-      innerRingRef.current.rotation.x = Math.sin(time * 0.3) * 0.2;
-    }
+//     // Inner ring counter-rotation
+//     if (innerRingRef.current) {
+//       innerRingRef.current.rotation.y -= 0.012;
+//       innerRingRef.current.rotation.x = Math.sin(time * 0.3) * 0.2;
+//     }
     
-    // Animate particles in orbital motion
-    if (particlesRef.current) {
-      const positions = particlesRef.current.geometry.attributes.position.array;
+//     // Animate particles in orbital motion
+//     if (particlesRef.current) {
+//       const positions = particlesRef.current.geometry.attributes.position.array;
       
-      for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-        const radius = Math.sqrt(positions[i3] ** 2 + positions[i3 + 2] ** 2);
-        const angle = Math.atan2(positions[i3 + 2], positions[i3]) + 0.01;
+//       for (let i = 0; i < particleCount; i++) {
+//         const i3 = i * 3;
+//         const radius = Math.sqrt(positions[i3] ** 2 + positions[i3 + 2] ** 2);
+//         const angle = Math.atan2(positions[i3 + 2], positions[i3]) + 0.01;
         
-        positions[i3] = Math.cos(angle) * radius;
-        positions[i3 + 1] += Math.sin(time * 2 + i * 0.1) * 0.002;
-        positions[i3 + 2] = Math.sin(angle) * radius;
-      }
-      particlesRef.current.geometry.attributes.position.needsUpdate = true;
-    }
+//         positions[i3] = Math.cos(angle) * radius;
+//         positions[i3 + 1] += Math.sin(time * 2 + i * 0.1) * 0.002;
+//         positions[i3 + 2] = Math.sin(angle) * radius;
+//       }
+//       particlesRef.current.geometry.attributes.position.needsUpdate = true;
+//     }
     
-    // Floating text animation
-    if (textRef.current) {
-      textRef.current.position.y = Math.sin(time * 0.5) * 0.1;
-      textRef.current.rotation.y = Math.sin(time * 0.3) * 0.1;
-    }
-  });
+//     // Floating text animation
+//     if (textRef.current) {
+//       textRef.current.position.y = Math.sin(time * 0.5) * 0.1;
+//       textRef.current.rotation.y = Math.sin(time * 0.3) * 0.1;
+//     }
+//   });
 
-  return (
-    <group>
-      {/* Main Holographic Ring */}
-      <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.3}>
-        <group ref={ringRef}>
-          <mesh scale={[3, 3, 3]}>
-            <torusGeometry args={[1, 0.05, 16, 100]} />
-            <meshStandardMaterial
-              color="#915eff"
-              emissive="#915eff"
-              emissiveIntensity={0.4}
-              transparent
-              opacity={0.8}
-              wireframe={false}
-            />
-          </mesh>
+//   return (
+//     <group>
+//       {/* Main Holographic Ring */}
+//       <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.3}>
+//         <group ref={ringRef}>
+//           <mesh scale={[3, 3, 3]}>
+//             <torusGeometry args={[1, 0.05, 16, 100]} />
+//             <meshStandardMaterial
+//               color="#915eff"
+//               emissive="#915eff"
+//               emissiveIntensity={0.4}
+//               transparent
+//               opacity={0.8}
+//               wireframe={false}
+//             />
+//           </mesh>
           
-          {/* Inner Ring */}
-          <group ref={innerRingRef}>
-            <mesh scale={[2, 2, 2]}>
-              <torusGeometry args={[1, 0.02, 12, 80]} />
-              <meshStandardMaterial
-                color="#ffffff"
-                emissive="#ffffff"
-                emissiveIntensity={0.3}
-                transparent
-                opacity={0.6}
-              />
-            </mesh>
-          </group>
-        </group>
-      </Float>
+//           {/* Inner Ring */}
+//           <group ref={innerRingRef}>
+//             <mesh scale={[2, 2, 2]}>
+//               <torusGeometry args={[1, 0.02, 12, 80]} />
+//               <meshStandardMaterial
+//                 color="#ffffff"
+//                 emissive="#ffffff"
+//                 emissiveIntensity={0.3}
+//                 transparent
+//                 opacity={0.6}
+//               />
+//             </mesh>
+//           </group>
+//         </group>
+//       </Float>
       
-      {/* Orbiting Energy Spheres */}
-      <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-        <mesh position={[4, 0, 0]}>
-          <sphereGeometry args={[0.15, 16, 16]} />
-          <meshStandardMaterial 
-            color="#915eff" 
-            emissive="#915eff" 
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.9}
-          />
-        </mesh>
-      </Float>
+//       {/* Orbiting Energy Spheres */}
+//       <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+//         <mesh position={[4, 0, 0]}>
+//           <sphereGeometry args={[0.15, 16, 16]} />
+//           <meshStandardMaterial 
+//             color="#915eff" 
+//             emissive="#915eff" 
+//             emissiveIntensity={0.5}
+//             transparent
+//             opacity={0.9}
+//           />
+//         </mesh>
+//       </Float>
       
-      <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.4}>
-        <mesh position={[-4, 1.5, 0]}>
-          <sphereGeometry args={[0.12, 16, 16]} />
-          <meshStandardMaterial 
-            color="#ffffff" 
-            emissive="#ffffff" 
-            emissiveIntensity={0.4}
-            transparent
-            opacity={0.8}
-          />
-        </mesh>
-      </Float>
+//       <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.4}>
+//         <mesh position={[-4, 1.5, 0]}>
+//           <sphereGeometry args={[0.12, 16, 16]} />
+//           <meshStandardMaterial 
+//             color="#ffffff" 
+//             emissive="#ffffff" 
+//             emissiveIntensity={0.4}
+//             transparent
+//             opacity={0.8}
+//           />
+//         </mesh>
+//       </Float>
       
-      <Float speed={2.5} rotationIntensity={0.25} floatIntensity={0.6}>
-        <mesh position={[0, -4, 3]}>
-          <sphereGeometry args={[0.18, 16, 16]} />
-          <meshStandardMaterial 
-            color="#7c3aed" 
-            emissive="#7c3aed" 
-            emissiveIntensity={0.4}
-            transparent
-            opacity={0.85}
-          />
-        </mesh>
-      </Float>
+//       <Float speed={2.5} rotationIntensity={0.25} floatIntensity={0.6}>
+//         <mesh position={[0, -4, 3]}>
+//           <sphereGeometry args={[0.18, 16, 16]} />
+//           <meshStandardMaterial 
+//             color="#7c3aed" 
+//             emissive="#7c3aed" 
+//             emissiveIntensity={0.4}
+//             transparent
+//             opacity={0.85}
+//           />
+//         </mesh>
+//       </Float>
       
-      {/* Dynamic Particle System */}
-      <points ref={particlesRef}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            array={particles.positions}
-            count={particleCount}
-            itemSize={3}
-          />
-          <bufferAttribute
-            attach="attributes-color"
-            array={particles.colors}
-            count={particleCount}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <pointsMaterial 
-          size={0.03} 
-          vertexColors
-          transparent 
-          opacity={0.8}
-          blending={THREE.AdditiveBlending}
-        />
-      </points>
+//       {/* Dynamic Particle System */}
+//       <points ref={particlesRef}>
+//         <bufferGeometry>
+//           <bufferAttribute
+//             attach="attributes-position"
+//             array={particles.positions}
+//             count={particleCount}
+//             itemSize={3}
+//           />
+//           <bufferAttribute
+//             attach="attributes-color"
+//             array={particles.colors}
+//             count={particleCount}
+//             itemSize={3}
+//           />
+//         </bufferGeometry>
+//         <pointsMaterial 
+//           size={0.03} 
+//           vertexColors
+//           transparent 
+//           opacity={0.8}
+//           blending={THREE.AdditiveBlending}
+//         />
+//       </points>
       
-      {/* Floating Contact Text */}
-      <Float speed={1} rotationIntensity={0.05} floatIntensity={0.2}>
-        <Text
-          ref={textRef}
-          position={[0, 0, 0]}
-          fontSize={0.3}
-          color="#915eff"
-          anchorX="center"
-          anchorY="middle"
-          font="/fonts/helvetiker_regular.typeface.json"
-        >
-          GET IN TOUCH
-        </Text>
-      </Float>
+//       {/* Floating Contact Text */}
+//       <Float speed={1} rotationIntensity={0.05} floatIntensity={0.2}>
+//         <Text
+//           ref={textRef}
+//           position={[0, 0, 0]}
+//           fontSize={0.3}
+//           color="#915eff"
+//           anchorX="center"
+//           anchorY="middle"
+//           font="/fonts/helvetiker_regular.typeface.json"
+//         >
+//           GET IN TOUCH
+//         </Text>
+//       </Float>
       
-      {/* Advanced Lighting Setup */}
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={1.2} color="#915eff" />
-      <pointLight position={[-10, -5, -10]} intensity={0.8} color="#ffffff" />
-      <spotLight
-        position={[0, 20, 0]}
-        angle={0.3}
-        penumbra={1}
-        intensity={0.5}
-        color="#7c3aed"
-        target-position={[0, 0, 0]}
-      />
-    </group>
-  );
-};
+//       {/* Advanced Lighting Setup */}
+//       <ambientLight intensity={0.4} />
+//       <pointLight position={[10, 10, 10]} intensity={1.2} color="#915eff" />
+//       <pointLight position={[-10, -5, -10]} intensity={0.8} color="#ffffff" />
+//       <spotLight
+//         position={[0, 20, 0]}
+//         angle={0.3}
+//         penumbra={1}
+//         intensity={0.5}
+//         color="#7c3aed"
+//         target-position={[0, 0, 0]}
+//       />
+//     </group>
+//   );
+// };
 
 // Enhanced Contact Form with better animations
 const ContactForm = ({ isDark }) => {
@@ -534,44 +535,45 @@ const ContactForm = ({ isDark }) => {
 };
 
 // Floating Contact Info Cards with enhanced animations
-const ContactInfoCard = ({ icon, title, info, link, isDark, delay, position }) => (
-  <motion.a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`absolute ${position} block p-4 rounded-2xl border backdrop-blur-xl transition-all duration-500 group hover:scale-110 z-10
-      ${isDark 
-        ? 'bg-gray-900/40 border-gray-700/60 hover:border-[#915eff] hover:bg-gray-900/60' 
-        : 'bg-white/40 border-gray-200/60 hover:border-[#915eff] hover:bg-white/60'
-      }
-      hover:shadow-[0_15px_35px_rgba(145,94,255,0.3)]`}
-    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
-    whileHover={{ 
-      y: -5,
-      transition: { duration: 0.2 }
-    }}
-  >
-    <div className="flex items-center space-x-3">
-      <motion.div 
-        className="p-2 rounded-xl bg-gradient-to-br from-[#915eff] to-[#7c3aed] text-white text-lg"
-        whileHover={{ rotate: 360, scale: 1.1 }}
-        transition={{ duration: 0.5 }}
-      >
-        {icon}
-      </motion.div>
-      <div>
-        <h3 className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
-          {title}
-        </h3>
-        <p className={`text-xs ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-          {info}
-        </p>
-      </div>
-    </div>
-  </motion.a>
-);
+// Remove or comment out the unused HolographicRing and ContactInfoCard
+// const ContactInfoCard = ({ icon, title, info, link, isDark, delay, position }) => (
+//   <motion.a
+//     href={link}
+//     target="_blank"
+//     rel="noopener noreferrer"
+//     className={`absolute ${position} block p-4 rounded-2xl border backdrop-blur-xl transition-all duration-500 group hover:scale-110 z-10
+//       ${isDark 
+//         ? 'bg-gray-900/40 border-gray-700/60 hover:border-[#915eff] hover:bg-gray-900/60' 
+//         : 'bg-white/40 border-gray-200/60 hover:border-[#915eff] hover:bg-white/60'
+//       }
+//       hover:shadow-[0_15px_35px_rgba(145,94,255,0.3)]`}
+//     initial={{ opacity: 0, scale: 0.8, y: 20 }}
+//     animate={{ opacity: 1, scale: 1, y: 0 }}
+//     transition={{ duration: 0.6, delay, type: "spring", bounce: 0.4 }}
+//     whileHover={{ 
+//       y: -5,
+//       transition: { duration: 0.2 }
+//     }}
+//   >
+//     <div className="flex items-center space-x-3">
+//       <motion.div 
+//         className="p-2 rounded-xl bg-gradient-to-br from-[#915eff] to-[#7c3aed] text-white text-lg"
+//         whileHover={{ rotate: 360, scale: 1.1 }}
+//         transition={{ duration: 0.5 }}
+//       >
+//         {icon}
+//       </motion.div>
+//       <div>
+//         <h3 className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
+//           {title}
+//         </h3>
+//         <p className={`text-xs ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+//           {info}
+//         </p>
+//       </div>
+//     </div>
+//   </motion.a>
+// );
 
 // Main Contact Section Component
 const ContactSection = ({ isDark = true }) => {
