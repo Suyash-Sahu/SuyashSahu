@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useAnimation, useMotionValue, useTransform } from 'framer-motion';
-import { BallCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
 import { technologies } from '../constants';
 import { styles } from '../styles';
 import { useTheme } from '../context/ThemeContext';
-import { textVariant, fadeIn } from '../utils/motion';
 
 const FloatingParticle = ({ delay = 0, index }) => {
   return (

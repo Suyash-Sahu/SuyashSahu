@@ -3,7 +3,6 @@ import { motion, useInView, useAnimation, useScroll, useTransform } from 'framer
 import { styles } from '../styles';
 import { experiences } from '../constants';
 import { SectionWrapper } from '../hoc';
-import { textVariant } from '../utils/motion';
 import { useTheme } from '../context/ThemeContext';
 
 const FloatingOrb = ({ delay = 0 }) => {

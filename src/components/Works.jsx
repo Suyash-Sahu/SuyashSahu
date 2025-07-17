@@ -90,9 +90,6 @@ const projects = [
   }
 ];
 
-// Mock theme context
-const useTheme = () => ({ isDark: true });
-
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
   const particles = useRef([]);
@@ -378,7 +375,6 @@ const SearchBar = ({ searchTerm, onSearchChange, isDark }) => (
 );
 
 const Works = () => {
-  const { isDark } = useTheme();
   const categories = ['All', ...new Set(projects.map(project => project.category))];
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
@@ -410,7 +406,7 @@ const Works = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.p
-            className={`text-lg mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'} uppercase tracking-wider`}
+            className={`text-lg mb-4 text-gray-400 uppercase tracking-wider`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -419,7 +415,7 @@ const Works = () => {
           </motion.p>
           
           <motion.h2
-            className={`text-6xl md:text-8xl font-bold mb-8 ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`text-6xl md:text-8xl font-bold mb-8 text-white`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -428,7 +424,7 @@ const Works = () => {
           </motion.h2>
 
           <motion.p
-            className={`text-lg max-w-3xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}
+            className={`text-lg max-w-3xl mx-auto leading-relaxed text-gray-400`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -442,7 +438,7 @@ const Works = () => {
         <SearchBar
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
-          isDark={isDark}
+          isDark={true}
         />
 
         {/* Category Filter */}
@@ -450,7 +446,7 @@ const Works = () => {
           categories={categories}
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
-          isDark={isDark}
+          isDark={true}
         />
 
         {/* Projects Grid */}
@@ -475,7 +471,7 @@ const Works = () => {
                 <ProjectCard
                   project={project}
                   index={index}
-                  isDark={isDark}
+                  isDark={true}
                   isActive={selectedProject?.id === project.id}
                   onClick={setSelectedProject}
                 />
@@ -493,7 +489,7 @@ const Works = () => {
             transition={{ delay: 0.3 }}
           >
             <div className="text-6xl mb-4">🔍</div>
-            <p className={`text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-xl text-gray-400`}>
               No projects found matching your criteria.
             </p>
           </motion.div>
