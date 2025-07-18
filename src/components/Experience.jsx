@@ -324,7 +324,6 @@ const ExperienceCard = ({ experience, index, isActive, onHover, scrollProgress }
 };
 
 const Experience = () => {
-  const { isDark } = useTheme();
   const [activeCard, setActiveCard] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const containerRef = useRef(null);

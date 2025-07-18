@@ -253,7 +253,6 @@ const CursorEffect = () => {
             animate={{ 
               opacity: 1, 
               scale: 1,
-              y: 0,
               x: mousePosition.x + 16,
               y: mousePosition.y + 16,
             }}
