@@ -3,89 +3,119 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Mock data - replace with your actual projects
 const projects = [
-  {
-    id: 1,
-    name: "AI Chat Application",
-    description: "A real-time chat application powered by AI with natural language processing capabilities and smart responses.",
-    tags: [
-      { name: "react", color: "text-blue-400" },
-      { name: "nodejs", color: "text-green-400" },
-      { name: "ai", color: "text-purple-400" }
-    ],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
-    category: "AI/ML",
-    featured: true
-  },
-  {
-    id: 2,
-    name: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-    tags: [
-      { name: "nextjs", color: "text-gray-400" },
-      { name: "stripe", color: "text-blue-400" },
-      { name: "mongodb", color: "text-green-400" }
-    ],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
-    category: "Web App"
-  },
+  // {
+  //   id: 1,
+  //   name: "AI Chat Application",
+  //   description: "A real-time chat application powered by AI with natural language processing capabilities and smart responses.",
+  //   tags: [
+  //     { name: "react", color: "text-blue-400" },
+  //     { name: "nodejs", color: "text-green-400" },
+  //     { name: "ai", color: "text-purple-400" }
+  //   ],
+  //   image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
+  //   source_code_link: "https://github.com",
+  //   live_demo_link: "https://demo.com",
+  //   category: "AI/ML",
+  //   featured: true
+  // },
+  // {
+  //   id: 2,
+  //   name: "E-Commerce Platform",
+  //   description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
+  //   tags: [
+  //     { name: "nextjs", color: "text-gray-400" },
+  //     { name: "stripe", color: "text-blue-400" },
+  //     { name: "mongodb", color: "text-green-400" }
+  //   ],
+  //   image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+  //   source_code_link: "https://github.com",
+  //   live_demo_link: "https://demo.com",
+  //   category: "Web App"
+  // },
   {
     id: 3,
     name: "Mobile Fitness Tracker",
     description: "Cross-platform mobile app for fitness tracking with workout plans, progress analytics, and social features.",
     tags: [
-      { name: "react-native", color: "text-cyan-400" },
+      { name: "java", color: "text-cyan-400" },
       { name: "firebase", color: "text-orange-400" },
-      { name: "charts", color: "text-pink-400" }
     ],
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
+    source_code_link: "https://github.com/Suyash-Sahu/StayFit",
+    live_demo_link: "https://github.com/Suyash-Sahu/StayFit",
     category: "Mobile App"
   },
   {
     id: 4,
-    name: "Data Visualization Dashboard",
-    description: "Interactive dashboard for business analytics with real-time data processing and beautiful visualizations.",
+    name: "E-Sports Management System",
+    description: "Web platform for managing e-sports tournaments with player registration, tiered progression, and sponsorship options.",
     tags: [
-      { name: "d3js", color: "text-orange-400" },
-      { name: "python", color: "text-yellow-400" },
-      { name: "api", color: "text-red-400" }
+      { name: "php", color: "text-blue-400" },
+      { name: "mysql", color: "text-yellow-400" },
+      { name: "html", color: "text-red-400" },
+      { name: "css", color: "text-indigo-400" }
     ],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
-    category: "Data Science"
+    image: "https://images.unsplash.com/photo-1611562027215-9407c5a850bc?w=400&h=300&fit=crop",
+    source_code_link: "https://github.com/Suyash-Sahu/E-Sports-Management",
+    live_demo_link: "https://github.com/Suyash-Sahu/E-Sports-Management",
+    category: "Web App"
   },
   {
     id: 5,
-    name: "Blockchain Wallet",
-    description: "Secure cryptocurrency wallet with multi-chain support, DeFi integration, and portfolio tracking.",
+    name: "IRCTC Clone App",
+    description: "A train ticket booking app mimicking core features of IRCTC including seat availability, PNR check, and payment simulation.",
     tags: [
-      { name: "web3", color: "text-purple-400" },
-      { name: "solidity", color: "text-gray-400" },
-      { name: "ethereum", color: "text-blue-400" }
+      { name: "react-native", color: "text-purple-400" },
+      { name: "firebase", color: "text-orange-400" },
+      { name: "node.js", color: "text-green-400" }
     ],
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
-    category: "Blockchain"
+    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce2?w=400&h=300&fit=crop",
+    source_code_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
+    live_demo_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
+    category: "Mobile App"
   },
+  
+  
+  // {
+  //   id: 4,
+  //   name: "Data Visualization Dashboard",
+  //   description: "Interactive dashboard for business analytics with real-time data processing and beautiful visualizations.",
+  //   tags: [
+  //     { name: "d3js", color: "text-orange-400" },
+  //     { name: "python", color: "text-yellow-400" },
+  //     { name: "api", color: "text-red-400" }
+  //   ],
+  //   image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+  //   source_code_link: "https://github.com",
+  //   live_demo_link: "https://demo.com",
+  //   category: "Data Science"
+  // },
+  // {
+  //   id: 5,
+  //   name: "Blockchain Wallet",
+  //   description: "Secure cryptocurrency wallet with multi-chain support, DeFi integration, and portfolio tracking.",
+  //   tags: [
+  //     { name: "web3", color: "text-purple-400" },
+  //     { name: "solidity", color: "text-gray-400" },
+  //     { name: "ethereum", color: "text-blue-400" }
+  //   ],
+  //   image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
+  //   source_code_link: "https://github.com",
+  //   live_demo_link: "https://demo.com",
+  //   category: "Blockchain"
+  // },
   {
     id: 6,
     name: "3D Portfolio Website",
     description: "Interactive 3D portfolio website with Three.js animations, particle systems, and immersive experiences.",
-    tags: [
-      { name: "threejs", color: "text-white" },
-      { name: "webgl", color: "text-red-400" },
-      { name: "gsap", color: "text-green-400" }
-    ],
+    // tags: [
+    //   { name: "threejs", color: "text-white" },
+    //   { name: "webgl", color: "text-red-400" },
+    //   { name: "gsap", color: "text-green-400" }
+    // ],
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
-    source_code_link: "https://github.com",
-    live_demo_link: "https://demo.com",
+    source_code_link: "hhttps://suyashsahu.netlify.app/",
+    live_demo_link: "https://suyashsahu.netlify.app/",
     category: "3D/Graphics"
   }
 ];
@@ -375,7 +405,7 @@ const SearchBar = ({ searchTerm, onSearchChange, isDark }) => (
 );
 
 const Works = () => {
-  const categories = ['All', ...new Set(projects.map(project => project.category))];
+  const categories = ['All'];
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
