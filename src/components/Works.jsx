@@ -64,11 +64,11 @@ const projects = [
     id: 5,
     name: "IRCTC Clone App",
     description: "A train ticket booking app mimicking core features of IRCTC including seat availability, PNR check, and payment simulation.",
-    tags: [
-      { name: "react-native", color: "text-purple-400" },
-      { name: "firebase", color: "text-orange-400" },
-      { name: "node.js", color: "text-green-400" }
-    ],
+    // tags: [
+    //   { name: "", color: "text-purple-400" },
+    //   { name: "firebase", color: "text-orange-400" },
+    //   { name: "node.js", color: "text-green-400" }
+    // ],
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=300&fit=crop",
     source_code_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
     live_demo_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
@@ -114,7 +114,7 @@ const projects = [
     //   { name: "gsap", color: "text-green-400" }
     // ],
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
-    source_code_link: "hhttps://suyashsahu.netlify.app/",
+    source_code_link: "https://suyashsahu.netlify.app/",
     live_demo_link: "https://suyashsahu.netlify.app/",
     category: "3D/Graphics"
   }
@@ -216,10 +216,17 @@ const GlowingOrb = ({ className, delay = 0 }) => (
 const ProjectCard = ({ project, index, isDark, isActive, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  // Determine the main link to use (prefer live_demo_link, fallback to source_code_link)
+  const mainLink = project.live_demo_link || project.source_code_link;
+
   return (
     <motion.div
       layoutId={`card-${project.id}`}
-      onClick={() => onClick(project)}
+      onClick={() => {
+        if (mainLink) {
+          window.open(mainLink, '_blank');
+        }
+      }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={`relative cursor-pointer group ${
@@ -243,44 +250,6 @@ const ProjectCard = ({ project, index, isDark, isActive, onClick }) => {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-4 right-4 flex gap-2">
-          {project.source_code_link && (
-            <FloatingElement delay={0.1}>
-              <motion.button
-                className="p-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20"
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(145, 94, 255, 0.3)" }}
-                whileTap={{ scale: 0.9 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(project.source_code_link, '_blank');
-                }}
-              >
-                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </motion.button>
-            </FloatingElement>
-          )}
-          {project.live_demo_link && (
-            <FloatingElement delay={0.2}>
-              <motion.button
-                className="p-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20"
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(145, 94, 255, 0.3)" }}
-                whileTap={{ scale: 0.9 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(project.live_demo_link, '_blank');
-                }}
-              >
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </motion.button>
-            </FloatingElement>
-          )}
         </div>
 
         {/* Content */}
@@ -419,6 +388,10 @@ const Works = () => {
 
   return (
     <section className="relative min-h-screen py-20 overflow-hidden">
+      {/* TEST LINK FOR DEBUGGING */}
+      <div style={{position: 'absolute', top: 0, left: 0, zIndex: 9999}}>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer" style={{color: 'red', fontSize: 24}}>Test Google Link</a>
+      </div>
       {/* Animated Background */}
       <ParticleBackground />
       
