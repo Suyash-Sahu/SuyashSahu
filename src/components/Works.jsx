@@ -55,7 +55,7 @@ const projects = [
       { name: "html", color: "text-red-400" },
       { name: "css", color: "text-indigo-400" }
     ],
-    image: "https://images.unsplash.com/photo-1611562027215-9407c5a850bc?w=400&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop",
     source_code_link: "https://github.com/Suyash-Sahu/E-Sports-Management",
     live_demo_link: "https://github.com/Suyash-Sahu/E-Sports-Management",
     category: "Web App"
@@ -69,7 +69,7 @@ const projects = [
       { name: "firebase", color: "text-orange-400" },
       { name: "node.js", color: "text-green-400" }
     ],
-    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce2?w=400&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=300&fit=crop",
     source_code_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
     live_demo_link: "https://github.com/Suyash-Sahu/IRCTC-Clone",
     category: "Mobile App"
@@ -308,7 +308,7 @@ const ProjectCard = ({ project, index, isDark, isActive, onClick }) => {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, tagIndex) => (
+              {(project.tags || []).map((tag, tagIndex) => (
                 <motion.span
                   key={tag.name}
                   className={`px-3 py-1 text-xs font-medium rounded-full bg-black/30 backdrop-blur-sm border border-white/20 ${tag.color}`}
