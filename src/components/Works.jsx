@@ -115,23 +115,6 @@ const ParticleBackground = () => {
   );
 };
 
-const FloatingElement = ({ children, delay = 0 }) => (
-  <motion.div
-    animate={{
-      y: [0, -10, 0],
-      rotate: [0, 2, -2, 0]
-    }}
-    transition={{
-      duration: 6,
-      repeat: Infinity,
-      delay,
-      ease: "easeInOut"
-    }}
-  >
-    {children}
-  </motion.div>
-);
-
 const GlowingOrb = ({ className, delay = 0 }) => (
   <motion.div
     className={`absolute rounded-full blur-xl ${className}`}
