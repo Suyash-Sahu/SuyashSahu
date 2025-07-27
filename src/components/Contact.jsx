@@ -2,8 +2,10 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS
-emailjs.init("PovnmbjAcGAvThKGi"); 
+// Initialize EmailJS with environment variable
+// Replace 'YOUR_EMAILJS_PUBLIC_KEY' with your actual EmailJS public key
+// You can get this from your EmailJS dashboard
+emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_EMAILJS_PUBLIC_KEY");
 
 // Enhanced 3D Holographic Ring Component
 // Remove or comment out the unused HolographicRing and ContactInfoCard
@@ -266,8 +268,10 @@ const ContactForm = ({ isDark }) => {
     try {
       
       const result = await emailjs.sendForm(
-        'service_y8f0j9l',
-        'template_1rtjxgu',
+        // Replace with your EmailJS service ID from environment variable
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        // Replace with your EmailJS template ID from environment variable  
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
         formRef.current
       );
       

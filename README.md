@@ -43,25 +43,48 @@ A modern and interactive portfolio website built with React.js and Three.js. Thi
    npm install
    ```
 
-3. **Create a `.env` file in the root directory and add your EmailJS credentials:**
+3. **Set up EmailJS (Required for contact form functionality):**
+
+   - Sign up at [EmailJS](https://www.emailjs.com/)
+   - Create an email service (Gmail, Outlook, etc.)
+   - Create an email template
+   - Get your credentials from the EmailJS dashboard
+
+4. **Create a `.env` file in the root directory and add your EmailJS credentials:**
 
    ```env
+   # EmailJS Configuration
+   # Get these values from your EmailJS dashboard
    REACT_APP_EMAILJS_SERVICE_ID=your_service_id
    REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
    REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
    ```
 
-4. **Start the development server:**
+   **⚠️ Security Note:** Never commit your `.env` file to version control. It's already added to `.gitignore`.
+
+5. **Start the development server:**
 
    ```bash
    npm start
    ```
 
-5. **Build for production:**
+6. **Build for production:**
 
    ```bash
    npm run build
    ```
+
+---
+
+## Environment Variables
+
+This project uses the following environment variables:
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `REACT_APP_EMAILJS_SERVICE_ID` | Your EmailJS service ID | Yes |
+| `REACT_APP_EMAILJS_TEMPLATE_ID` | Your EmailJS template ID | Yes |
+| `REACT_APP_EMAILJS_PUBLIC_KEY` | Your EmailJS public key | Yes |
 
 ---
 
@@ -93,6 +116,16 @@ Models should be placed in the `/public` directory.
 2. Replace images and icons in `/src/assets`
 3. Modify styles in `/src/styles.js` and `/src/index.css`
 4. Update 3D models in `/public`
+5. Update EmailJS configuration in your `.env` file
+
+---
+
+## Security Considerations
+
+- ✅ Environment variables are used for sensitive data
+- ✅ `.env` file is in `.gitignore`
+- ✅ No hardcoded API keys in the codebase
+- ✅ EmailJS credentials are properly secured
 
 ---
 
@@ -102,6 +135,8 @@ The project can be deployed to platforms like:
 - Vercel
 - Netlify
 - GitHub Pages
+
+**Important:** Make sure to set up your environment variables in your deployment platform's settings.
 
 Follow the respective platform's deployment guides for detailed instructions.
 
