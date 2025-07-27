@@ -39,7 +39,7 @@ A modern and interactive portfolio website built with React.js and Three.js. Thi
 2. **Install dependencies:**
 
    ```bash
-   cd 3d-portfolio
+   cd portfolio
    npm install
    ```
 
