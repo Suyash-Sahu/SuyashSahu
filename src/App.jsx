@@ -34,7 +34,7 @@ const MainContent = () => {
       <Works />
       </div>
 
-      <div className="relative z-0">
+      <div id="contact" className="relative z-0">
         <Contact />
         <StarsCanvas />
       </div>

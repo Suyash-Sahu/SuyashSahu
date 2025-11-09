@@ -18,6 +18,8 @@ import threejs from "./tech/threejs.svg";
 import java from "./tech/java.jpeg";
 import flutter from "./tech/flutter.png";
 import firebase from "./tech/firebase.jpeg";
+import nodejs from "./tech/nodejs.svg";
+import mongodb from "./tech/mongodb.svg";
 
 export {
   logo,
@@ -39,4 +41,6 @@ export {
   java,
   flutter,
   firebase,
+  nodejs,
+  mongodb,
 };

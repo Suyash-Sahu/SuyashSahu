@@ -213,7 +213,7 @@ const Hero = () => {
                 backgroundSize: '200% 200%',
               }}
             >
-              Suyash
+              Suyash Sahu
               <motion.div
                 className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-[#915eff] to-[#ff6b6b] rounded-full"
                 initial={{ width: 0 }}

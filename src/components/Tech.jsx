@@ -48,67 +48,11 @@ const TechOrb = ({ children, delay = 0 }) => {
   );
 };
 
-const SkillLevel = ({ percentage, delay = 0 }) => {
-  const [count, setCount] = useState(0);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        setCount(prev => {
-          if (prev >= percentage) {
-            clearInterval(interval);
-            return percentage;
-          }
-          return prev + 1;
-        });
-      }, 30);
-      return () => clearInterval(interval);
-    }, delay * 1000);
-    
-    return () => clearTimeout(timer);
-  }, [percentage, delay]);
-
-  return (
-    <motion.div
-      className="w-full h-2 bg-gray-700 rounded-full overflow-hidden relative"
-      initial={{ scaleX: 0 }}
-      animate={{ scaleX: 1 }}
-      transition={{ duration: 1, delay }}
-    >
-      <motion.div
-        className="h-full bg-gradient-to-r from-[#915eff] to-purple-400 rounded-full relative"
-        initial={{ width: 0 }}
-        animate={{ width: `${count}%` }}
-        transition={{ duration: 0.1 }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-          animate={{ x: ['-100%', '200%'] }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "linear",
-            delay: delay + 1
-          }}
-        />
-      </motion.div>
-      <motion.span
-        className="absolute right-2 -top-6 text-xs font-bold text-[#915eff]"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: delay + 1 }}
-      >
-        {count}%
-      </motion.span>
-    </motion.div>
-  );
-};
-
-const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
+const TechCard = ({ name, icon, isDark, index, category }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const cardRef = useRef(null);
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-100, 100], [10, -10]);
@@ -124,14 +68,14 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 100,
       scale: 0.8,
       rotateX: -20
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
       rotateX: 0,
@@ -155,7 +99,7 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
   };
 
   const glowVariants = {
-    initial: { 
+    initial: {
       boxShadow: "0 0 0 0 rgba(145, 94, 255, 0)",
     },
     animate: {
@@ -210,10 +154,10 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
       />
 
       {/* Main card */}
-      <motion.div 
+      <motion.div
         className={`w-full h-full rounded-2xl ${
-          isDark 
-            ? 'bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/90 border border-gray-700/50' 
+          isDark
+            ? 'bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/90 border border-gray-700/50'
             : 'bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95 border border-gray-200/50'
         } backdrop-blur-xl p-6 flex flex-col items-center justify-center relative overflow-hidden transform-gpu`}
         style={{ transformStyle: "preserve-3d" }}
@@ -253,7 +197,7 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
               alt={name}
               className="w-full h-full object-contain filter drop-shadow-lg"
             />
-            
+
             {/* Icon glow */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-[#915eff]/20 to-purple-400/20 rounded-full blur-xl"
@@ -276,10 +220,7 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
           {name}
         </motion.h3>
 
-        {/* Skill level indicator */}
-        <div className="w-full">
-          <SkillLevel percentage={level} delay={index * 0.1 + 0.8} />
-        </div>
+        {/* (Skill/proficiency removed by request) */}
 
         {/* Interactive elements */}
         <motion.div
@@ -312,14 +253,14 @@ const TechCard = ({ name, icon, isDark, index, category, level = 85 }) => {
         />
       </motion.div>
 
-      {/* Floating tooltip */}
+      {/* Floating tooltip (kept but empty — you can populate if needed) */}
       <motion.div
         className={`absolute -bottom-16 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg ${
           isDark ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'
         } border shadow-xl z-10 whitespace-nowrap`}
         initial={{ opacity: 0, y: 10, scale: 0.8 }}
-        animate={{ 
-          opacity: isHovered ? 1 : 0, 
+        animate={{
+          opacity: isHovered ? 1 : 0,
           y: isHovered ? 0 : 10,
           scale: isHovered ? 1 : 0.8
         }}
@@ -339,7 +280,6 @@ const TechStats = ({ isDark }) => {
     { label: 'Internship Experience', value: 1, suffix: '' },
     { label: 'Frameworks & Tools', value: 6, suffix: '+' }
   ];
-  
 
   return (
     <motion.div
@@ -386,21 +326,20 @@ const Tech = () => {
   }, [isInView, controls]);
 
   const categories = ['all'];
-  
-  // Add category and level to technologies (you can customize this based on your data)
+
+  // Add category metadata to technologies (customize if needed)
   const enhancedTechnologies = technologies.map((tech, index) => ({
     ...tech,
     category: ['frontend', 'backend', 'tools', 'mobile'][index % 4],
-    level: 85 + Math.floor(Math.random() * 15)
   }));
 
-  const filteredTech = selectedCategory === 'all' 
-    ? enhancedTechnologies 
+  const filteredTech = selectedCategory === 'all'
+    ? enhancedTechnologies
     : enhancedTechnologies.filter(tech => tech.category === selectedCategory);
 
   const headerVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: -100,
       scale: 0.8
     },
@@ -433,7 +372,7 @@ const Tech = () => {
         <TechOrb delay={6}>
           <div className="text-3xl absolute top-3/4 right-1/3">🔧</div>
         </TechOrb>
-        
+
         {/* Floating geometric shapes */}
         <motion.div
           className="absolute top-20 left-1/4 w-64 h-64 bg-gradient-to-r from-[#915eff]/10 to-purple-400/10 rounded-full blur-3xl"
@@ -462,17 +401,17 @@ const Tech = () => {
         animate={controls}
         className="relative z-10 text-center mb-12"
       >
-        <motion.p 
+        <motion.p
           className={`${styles.sectionSubText} mb-4`}
-          whileHover={{ 
+          whileHover={{
             scale: 1.05,
             textShadow: "0 0 20px rgba(145, 94, 255, 0.5)"
           }}
         >
           MY TECH ARSENAL
         </motion.p>
-        
-        <motion.h2 
+
+        <motion.h2
           className={`${styles.sectionHeadText} bg-gradient-to-r from-[#915eff] via-purple-400 to-[#915eff] bg-clip-text text-transparent mb-6`}
           style={{ backgroundSize: '200% auto' }}
           animate={{
@@ -483,7 +422,7 @@ const Tech = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.02,
             filter: "drop-shadow(0 0 20px rgba(145, 94, 255, 0.3))"
           }}
@@ -515,8 +454,8 @@ const Tech = () => {
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               selectedCategory === category
                 ? 'bg-gradient-to-r from-[#915eff] to-purple-400 text-white'
-                : isDark 
-                  ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
+                : isDark
+                  ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
             whileHover={{ scale: 1.05 }}
@@ -528,7 +467,7 @@ const Tech = () => {
       </motion.div>
 
       {/* Tech cards grid */}
-      <motion.div 
+      <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 justify-items-center relative z-10"
         layout
       >
